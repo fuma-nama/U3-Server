@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.4</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>org.example</groupId>
+    <artifactId>untitled3</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
+            <version>3.15.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-meta</artifactId>
+            <version>3.15.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-codegen</artifactId>
+            <version>3.15.5</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.22</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+            <version>2.5.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.10.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.14.3</version>
+        </dependency>
+    </dependencies>
+    <build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+        <plugin>
+        <!-- Specify the maven code generator plugin -->
+        <!-- Use org.jooq                for the Open Source Edition
+                 org.jooq.pro            for commercial editions with Java 17 support,
+                 org.jooq.pro-java-11    for commercial editions with Java 11 support,
+                 org.jooq.pro-java-8     for commercial editions with Java 8 support,
+                 org.jooq.trial          for the free trial edition with Java 17 support,
+                 org.jooq.trial-java-11  for the free trial edition with Java 11 support,
+                 org.jooq.trial-java-8   for the free trial edition with Java 8 support
+
+             Note: Only the Open Source Edition is hosted on Maven Central.
+                   Import the others manually from your distribution -->
+        <groupId>org.jooq</groupId>
+        <artifactId>jooq-codegen-maven</artifactId>
+        <version>3.15.5</version>
+
+        <executions>
+            <execution>
+                <id>jooq-codegen</id>
+                <phase>generate-sources</phase>
+                <goals>
+                    <goal>generate</goal>
+                </goals>
+            </execution>
+        </executions>
+
+        <configuration>
+            <jdbc>
+                <driver>com.mysql.cj.jdbc.Driver</driver>
+                <url>jdbc:mysql://localhost:3306/login?serverTimezone=UTC</url>
+                <user>root</user>
+                <password>10124Lol</password>
+            </jdbc>
+
+            <generator>
+                <!-- The default code generator. You can override this one, to generate your own code style.
+                     Supported generators:
+                     - org.jooq.codegen.JavaGenerator
+                     - org.jooq.codegen.KotlinGenerator
+                     - org.jooq.codegen.ScalaGenerator
+                     Defaults to org.jooq.codegen.JavaGenerator -->
+                <name>org.jooq.codegen.JavaGenerator</name>
+
+                <database>
+                    <!-- The database type. The format here is:
+                         org.jooq.meta.[database].[database]Database -->
+                    <name>org.jooq.meta.mysql.MySQLDatabase</name>
+
+                    <!-- The database schema (or in the absence of schema support, in your RDBMS this
+                         can be the owner, user, database name) to be generated -->
+                    <inputSchema>login</inputSchema>
+
+                    <!-- All elements that are generated from your schema
+                         (A Java regular expression. Use the pipe to separate several expressions)
+                         Watch out for case-sensitivity. Depending on your database, this might be important! -->
+                    <includes>.*</includes>
+                </database>
+
+                <target>
+                    <!-- The destination package of your generated classes (within the destination directory) -->
+                    <packageName>test.generated</packageName>
+
+                    <!-- The destination directory of your generated classes. Using Maven directory layout here -->
+                    <directory>D:\Deve\untitled3/src/main/java</directory>
+                </target>
+            </generator>
+        </configuration>
+    </plugin>
+    </plugins>
+    </build>
+</project>
