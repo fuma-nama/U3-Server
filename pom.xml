@@ -109,7 +109,7 @@
                 <driver>com.mysql.cj.jdbc.Driver</driver>
                 <url>jdbc:mysql://localhost:3306/login?serverTimezone=UTC</url>
                 <user>root</user>
-                <password>10124Lol</password>
+                <password>password</password>
             </jdbc>
 
             <generator>
@@ -128,7 +128,7 @@
 
                     <!-- The database schema (or in the absence of schema support, in your RDBMS this
                          can be the owner, user, database name) to be generated -->
-                    <inputSchema>login</inputSchema>
+                    <inputSchema>u3</inputSchema>
 
                     <!-- All elements that are generated from your schema
                          (A Java regular expression. Use the pipe to separate several expressions)
